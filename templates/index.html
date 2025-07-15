@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<section class="hero-section text-white text-center d-flex align-items-center justify-content-center" style="background: url('https://source.unsplash.com/1600x600/?technology') center/cover; height: 80vh;">
+  <div class="bg-dark bg-opacity-50 p-5 rounded animate__animated animate__fadeIn">
+    <h1 class="display-4 fw-bold">Your Network, Our Mission</h1>
+    <p class="lead">High-performance networking solutions delivered with precision and style.</p>
+    <a href="/services" class="btn btn-primary btn-lg mt-3">Explore Services</a>
+  </div>
+</section>
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-4 mb-4"><i class="fas fa-network-wired fa-3x text-primary mb-3"></i><h4>Infrastructure Design</h4><p>Custom-built network architecture for optimal performance and scalability.</p></div>
+      <div class="col-md-4 mb-4"><i class="fas fa-cloud fa-3x text-primary mb-3"></i><h4>Cloud Integration</h4><p>Seamlessly migrate and manage workloads across hybrid environments.</p></div>
+      <div class="col-md-4 mb-4"><i class="fas fa-shield-alt fa-3x text-primary mb-3"></i><h4>Security & Monitoring</h4><p>End-to-end protection with proactive incident detection and response.</p></div>
+    </div>
+  </div>
+</section>
+<section class="py-5"><div class="container"><div class="swiper mySwiper"><div class="swiper-wrapper">
+  <div class="swiper-slide"><img src="https://source.unsplash.com/800x400/?datacenter" class="img-fluid rounded"></div>
+  <div class="swiper-slide"><img src="https://source.unsplash.com/800x400/?cybersecurity" class="img-fluid rounded"></div>
+  <div class="swiper-slide"><img src="https://source.unsplash.com/800x400/?cloud" class="img-fluid rounded"></div>
+</div><div class="swiper-pagination"></div></div></div></section>
+<section class="py-5 bg-dark text-white text-center"><div class="container"><div class="row">
+  <div class="col-md-4"><h2 class="counter" data-target="200">0</h2><p>Clients Served</p></div>
+  <div class="col-md-4"><h2 class="counter" data-target="350">0</h2><p>Projects Completed</p></div>
+  <div class="col-md-4"><h2 class="counter" data-target="100">0</h2><p>Networks Secured</p></div>
+</div></div></section>
+{% endblock %}
