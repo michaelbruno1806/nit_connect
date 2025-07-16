@@ -1,30 +1,60 @@
-{% extends 'base.html' %}
-{% block title %}Home{% endblock %}
-{% block content %}
-<section class="hero-section text-white text-center d-flex align-items-center justify-content-center" style="background: url('https://source.unsplash.com/1600x600/?technology') center/cover; height: 80vh;">
-  <div class="bg-dark bg-opacity-50 p-5 rounded animate__animated animate__fadeIn">
-    <h1 class="display-4 fw-bold">Your Network, Our Mission</h1>
-    <p class="lead">High-performance networking solutions delivered with precision and style.</p>
-    <a href="/services" class="btn btn-primary btn-lg mt-3">Explore Services</a>
-  </div>
-</section>
-<section class="py-5 bg-light">
-  <div class="container">
-    <div class="row text-center">
-      <div class="col-md-4 mb-4"><i class="fas fa-network-wired fa-3x text-primary mb-3"></i><h4>Infrastructure Design</h4><p>Custom-built network architecture for optimal performance and scalability.</p></div>
-      <div class="col-md-4 mb-4"><i class="fas fa-cloud fa-3x text-primary mb-3"></i><h4>Cloud Integration</h4><p>Seamlessly migrate and manage workloads across hybrid environments.</p></div>
-      <div class="col-md-4 mb-4"><i class="fas fa-shield-alt fa-3x text-primary mb-3"></i><h4>Security & Monitoring</h4><p>End-to-end protection with proactive incident detection and response.</p></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nit_Connect | Connectivity Experts</title>
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <script defer src="/static/js/script.js"></script>
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay">
+      <h1>Nit_Connect</h1>
+      <p>Premium Network Solutions: Fiber Optic, Structured Cabling, and More</p>
+      <a href="#booking" class="btn">Book Now</a>
     </div>
-  </div>
-</section>
-<section class="py-5"><div class="container"><div class="swiper mySwiper"><div class="swiper-wrapper">
-  <div class="swiper-slide"><img src="https://source.unsplash.com/800x400/?datacenter" class="img-fluid rounded"></div>
-  <div class="swiper-slide"><img src="https://source.unsplash.com/800x400/?cybersecurity" class="img-fluid rounded"></div>
-  <div class="swiper-slide"><img src="https://source.unsplash.com/800x400/?cloud" class="img-fluid rounded"></div>
-</div><div class="swiper-pagination"></div></div></div></section>
-<section class="py-5 bg-dark text-white text-center"><div class="container"><div class="row">
-  <div class="col-md-4"><h2 class="counter" data-target="200">0</h2><p>Clients Served</p></div>
-  <div class="col-md-4"><h2 class="counter" data-target="350">0</h2><p>Projects Completed</p></div>
-  <div class="col-md-4"><h2 class="counter" data-target="100">0</h2><p>Networks Secured</p></div>
-</div></div></section>
-{% endblock %}
+  </header>
+
+  <section class="services">
+    <h2>Our Services</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="/static/img/patching.jpg" alt="Patching a switch">
+        <h3>Switch Configuration</h3>
+      </div>
+      <div class="card">
+        <img src="/static/img/server-room.jpg" alt="Server room">
+        <h3>Server Room Installation</h3>
+      </div>
+      <div class="card">
+        <img src="/static/img/cabling.jpg" alt="Cabling">
+        <h3>Structured Cabling</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking" id="booking">
+    <h2>Book a Consultation</h2>
+    <form method="POST" action="/book">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <input type="tel" name="phone" placeholder="Your Phone" required />
+      <textarea name="message" placeholder="Tell us what you need..." required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section class="map">
+    <h2>Find Us</h2>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3..."
+      width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Nit_Connect. Developed by Mika.</p>
+  </footer>
+</body>
+</html>
