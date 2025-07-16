@@ -1,30 +1,41 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, flash
+import smtplib
+from email.message import EmailMessage
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'
+
+RECIPIENT_EMAIL = 'yourbookingemail@example.com'
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/book', methods=['POST'])
+def book():
+    name = request.form['name']
+    email = request.form['email']
+    phone = request.form['phone']
+    message = request.form['message']
 
-@app.route('/services')
-def services():
-    return render_template('services.html')
+    try:
+        msg = EmailMessage()
+        msg['Subject'] = 'New Booking from Nit_Connect Website'
+        msg['From'] = email
+        msg['To'] = RECIPIENT_EMAIL
+        msg.set_content(f"Name: {name}\nEmail: {email}\nPhone: {phone}\nMessage: {message}")
 
-@app.route('/testimonials')
-def testimonials():
-    return render_template('testimonials.html')
+        with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
+            smtp.starttls()
+            smtp.login('yourbookingemail@example.com', 'your_app_password')
+            smtp.send_message(msg)
 
-@app.route('/booking', methods=['POST'])
-def booking():
-    name = request.form.get('name')
-    email = request.form.get('email')
-    date = request.form.get('date')
-    message = request.form.get('message')
-    return f"Thanks {name}, your message has been received!"
+        flash('Booking submitted successfully!', 'success')
+    except Exception as e:
+        print(e)
+        flash('Failed to send booking. Please try again.', 'error')
+
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
