@@ -1,19 +1,9 @@
-from flask import Flask, render_template, request, jsonify
-from flask_mail import Mail, Message
+from flask import Flask, render_template, request, redirect, url_for, flash
+import smtplib
+import os
 
 app = Flask(__name__)
-
-# Email Config
-app.config.update(
-    MAIL_SERVER='smtp.gmail.com',
-    MAIL_PORT=587,
-    MAIL_USERNAME='djmichael.bruno33@gmail.com',
-    MAIL_PASSWORD='Testing123!',
-    MAIL_USE_TLS=True,
-    MAIL_USE_SSL=False
-)
-
-mail = Mail(app)
+app.secret_key = 'your_secret_key'
 
 @app.route("/")
 def index():
@@ -21,14 +11,31 @@ def index():
 
 @app.route("/send", methods=["POST"])
 def send():
-    name = request.form["name"]
-    email = request.form["email"]
-    message = request.form["message"]
+    name = request.form.get("name")
+    email = request.form.get("email")
+    message = request.form.get("message")
 
-    msg = Message("Contact - NetConnect Pro", sender=email, recipients=["yourmail@domain.com"])
-    msg.body = f"From: {name}\nEmail: {email}\n\n{message}"
-    mail.send(msg)
-    return jsonify({"success": True})
+    try:
+        smtp_server = os.environ.get("MAIL_SERVER")
+        smtp_port = int(os.environ.get("MAIL_PORT", 587))
+        smtp_user = os.environ.get("MAIL_USERNAME")
+        smtp_pass = os.environ.get("MAIL_PASSWORD")
+        receiver = os.environ.get("MAIL_RECEIVER")
+
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(smtp_user, smtp_pass)
+            subject = f"New Contact Message from {name}"
+            body = f"From: {name} <{email}>\n\n{message}"
+            msg = f"Subject: {subject}\n\n{body}"
+            server.sendmail(smtp_user, receiver, msg)
+
+        flash("Message sent successfully!", "success")
+    except Exception as e:
+        print(e)
+        flash("An error occurred while sending the message.", "danger")
+
+    return redirect(url_for("index"))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
