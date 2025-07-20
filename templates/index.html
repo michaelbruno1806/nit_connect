@@ -1,139 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>nit_connect - Enterprise Network Solutions</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <script defer src="https://unpkg.com/react@18/umd/react.development.js"></script>
-  <script defer src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <script defer src="react-components.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetConnect Pro</title>
+<link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="#" class="logo">NetConnect Pro</a>
-      <button id="nav-toggle" class="nav-toggle">☰</button>
-      <ul class="nav-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li>
-          <select id="language-switcher">
-            <option value="en">EN</option>
-            <option value="fr">FR</option>
-          </select>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header id="home" class="hero fade-in">
-    <div class="container">
-      <h1 data-en="Enterprise Network Solutions" data-fr="Solutions Réseau d'Entreprise">Enterprise Network Solutions</h1>
-      <p data-en="Connecting your business with world-class infrastructure and technology." data-fr="Connecter votre entreprise avec une infrastructure et une technologie de classe mondiale.">Connecting your business with world-class infrastructure and technology.</p>
-      <a href="#contact" class="cta-button" data-en="Get Quote" data-fr="Demander un devis">Get Quote</a>
-    </div>
-  </header>
-
-  <!-- Services Section -->
-  <section id="services" class="services section slide-in-left">
-    <div class="container">
-      <h2 data-en="Our Services" data-fr="Nos Services">Our Services</h2>
-      <div class="cards">
-        <div class="card">
-          <h3 data-en="Fiber Optic Installation" data-fr="Installation de Fibre Optique">Fiber Optic Installation</h3>
-          <p data-en="High-speed and reliable fiber optic solutions for enterprises." data-fr="Solutions de fibre optique rapides et fiables pour les entreprises.">High-speed and reliable fiber optic solutions for enterprises.</p>
-        </div>
-        <div class="card">
-          <h3 data-en="Network Security" data-fr="Sécurité Réseau">Network Security</h3>
-          <p data-en="Protect your data with our robust security systems and monitoring." data-fr="Protégez vos données avec nos systèmes de sécurité robustes.">Protect your data with our robust security systems and monitoring.</p>
-        </div>
-        <div class="card">
-          <h3 data-en="Cloud Connectivity" data-fr="Connectivité Cloud">Cloud Connectivity</h3>
-          <p data-en="Seamless integration with cloud infrastructure providers." data-fr="Intégration fluide avec les fournisseurs d'infrastructure cloud.">Seamless integration with cloud infrastructure providers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about section slide-in-right">
-    <div class="container">
-      <h2 data-en="About Us" data-fr="À Propos">About Us</h2>
-      <p data-en="nit_connect is a leading provider of enterprise-grade network and infrastructure services across Mauritius and beyond." data-fr="nit_connect est un leader en services réseau et d'infrastructure d'entreprise à Maurice et au-delà.">nit_connect is a leading provider of enterprise-grade network and infrastructure services across Mauritius and beyond.</p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact section scale-up">
-    <div class="container">
-      <h2 data-en="Contact Us" data-fr="Nous Contacter">Contact Us</h2>
-      <form action="/send" method="post">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit" data-en="Send Message" data-fr="Envoyer">Send Message</button>
-      </form>
-      <div id="map" style="width: 100%; height: 300px; margin-top: 20px;"></div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>&copy; Entertained by MB18 Solutions.</p>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observerOptions = { threshold: 0.1 };
-      const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-up').forEach(el => {
-        observer.observe(el);
-      });
-
-      // Language switcher
-      const switcher = document.getElementById('language-switcher');
-      switcher.addEventListener('change', (e) => {
-        const lang = e.target.value;
-        document.querySelectorAll('[data-en]').forEach(el => {
-          el.textContent = el.dataset[lang];
-        });
-      });
-
-      // Google Maps init
-      window.initMap = function() {
-        new google.maps.Map(document.getElementById("map"), {
-          center: { lat: -20.1609, lng: 57.5012 },
-          zoom: 12,
-        });
-      }
+<div class="navbar">
+  <span class="logo">NetConnect Pro</span>
+</div>
+<section class="hero">
+  <h1>Enterprise Network Solutions</h1>
+  <p>Connectivity | Optic Fibre | Infrastructure</p>
+  <a href="#contact" class="cta-button">Contact Us</a>
+</section>
+<section class="section" id="contact">
+  <h2>Contact Us</h2>
+  <form action="/send" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required><br>
+    <input type="email" name="email" placeholder="Your Email" required><br>
+    <textarea name="message" placeholder="Your Message" required></textarea><br>
+    <button type="submit">Send</button>
+  </form>
+</section>
+<div id="map" style="height: 300px; margin-top: 20px;"></div>
+<footer>
+  Developed by Mika
+</footer>
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -20.1609, lng: 57.5012},
+      zoom: 10
     });
-  </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
-
-  <!-- Mobile nav toggle -->
-  <script>
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    navToggle?.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-  </script>
+  }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>
